@@ -1,21 +1,23 @@
 import React from "react";
 import Header from "./Header";
-import { Button } from "@/components/ui/button";
+import useStore from "@/store/context";
+import Collection from "./Collection";
+import { DataDisplay } from "@/components";
 
 const Sidebar = () => {
+  const { state } = useStore();
+  const { collections } = state;
+
   return (
-    <aside className="w-[300px] border-r p-2">
+    <aside className="w-[300px] border-r">
       <Header />
-      <div className="mt-4 flex items-center justify-center flex-col h-full text-center gap-2">
-        <h2 className="text-lg font-medium leading-5">
-          Create a collection for your requests
-        </h2>
-        <p className="text-neutral-600">
-          A collection lets you group related requests and easily set common
-          authorization, tests, scripts, and variables for all requests in it.
-        </p>
-        <Button variant={"outline"}>Create collection</Button>
-      </div>
+      {collections.length > 0 ? (
+        collections.map((collection) => (
+          <Collection data={collection} key={collection.id} />
+        ))
+      ) : (
+        <DataDisplay.Empty.Collection />
+      )}
     </aside>
   );
 };
