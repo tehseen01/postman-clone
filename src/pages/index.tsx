@@ -1,13 +1,12 @@
-import { Inter } from "next/font/google";
-import { Layout } from "@/components";
+import { Home } from "@/container";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Home() {
+const HomePage = () => {
   return (
     <div className="flex min-h-screen">
-      <Layout.Sidebar />
+      <Home.Sidebar />
       <main>hello</main>
     </div>
   );
-}
+};
+
+export default HomePage;
